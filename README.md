@@ -20,12 +20,12 @@ Key features:
 
 ### `requirements.txt` includes:
 ```
-pandas
-numpy
-matplotlib
-seaborn
-scikit-learn
-imblearn
+pandas==2.2.3
+numpy==1.26.4
+matplotlib==3.9.0
+seaborn==0.13.2
+scikit-learn==1.6.1
+imbalanced-learn==0.13.0
 ```
 ---
 
