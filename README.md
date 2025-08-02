@@ -27,9 +27,6 @@ seaborn
 scikit-learn
 imblearn
 ```
-
-> ⚠️ Note: `cupy` was detected in the source code but not used.
-
 ---
 
 ## 🧠 Classification Models
