@@ -167,13 +167,5 @@ Outputs include printed metrics and confusion matrix images saved to `results/`.
 - `Distribution_of_Numerical_Features.png`
 - `Income_Class_Distribution.png`
 
----
-
-## 📌 Future Work
-- Add cross-validation support
-- Enable more preprocessing options
-- Integrate automatic report generator (PDF/HTML)
-
----
 
 Created by: **Mesut Erkin Özokutgen**
