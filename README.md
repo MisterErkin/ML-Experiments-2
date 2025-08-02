@@ -1,19 +1,24 @@
-# ML Pipeline on Adult Income Dataset
+# 🧠 ML Pipeline on UCI Adult Income Dataset
 
-## 📌 Project Overview
-This project applies various classification models and sampling techniques to the UCI Adult Income dataset. The goal is to evaluate the impact of different sampling methods on performance metrics such as accuracy, recall, precision, F1-score, and ROC-AUC.
+## 📌 Overview
+This project explores the impact of various sampling techniques on classification models trained on the **UCI Adult Income dataset**. The primary goal is to predict whether a person earns more than $50K/year and evaluate how imbalanced data treatments affect performance.
 
-The pipeline supports baseline training, comparison of 4 sampling techniques, and optional dimensionality reduction via LDA.
+Key features:
+- Support for 4 classification models
+- Optional LDA dimensionality reduction
+- Visualization of distributions, confusion matrices, and result summaries
 
 ---
 
-## ⚙️ Requirements
-Install dependencies using:
-```bash
-pip install -r requirements.txt
-```
+## ⚙️ Environment & Requirements
 
-### `requirements.txt`
+- **Python version**: `3.12.3`
+- Install dependencies:
+  ```bash
+  pip install -r requirements.txt
+  ```
+
+### `requirements.txt` includes:
 ```
 pandas
 numpy
@@ -23,149 +28,146 @@ scikit-learn
 imblearn
 ```
 
----
-
-## 🧠 Models Used
-- Logistic Regression (`logreg`)
-- Random Forest (`random_forest`)
-- K-Nearest Neighbors (`knn`)
-- Gradient Boosting (`gradient_boost`)
-
-> SVM was removed due to slow training.
+> ⚠️ Note: `cupy` was detected in the source code but not used.
 
 ---
 
-## 🔁 Sampling Techniques Included
+## 🧠 Classification Models
+- **Logistic Regression** (`logreg`)
+- **Random Forest** (`random_forest`)
+- **K-Nearest Neighbors** (`knn`)
+- **Gradient Boosting** (`gradient_boost`)
+
+> ❌ Support Vector Machine (`svm`) was excluded due to high computation time.
+
+---
+
+## 🔁 Sampling Techniques
+To address data imbalance:
 - Random Oversampling
-- SMOTE (Synthetic Minority Oversampling Technique)
+- SMOTE (Synthetic Minority Over-sampling Technique)
 - Random Undersampling
 - Tomek Links
 
-Each model is tested with all sampling methods.
+Each model is trained with all sampling methods and optionally with **LDA**-reduced features.
 
 ---
 
-## 📊 Summary of Test Results
-Test Config: `test_size=0.3`, `random_state=66`, `scaler=minmax`, `apply_lda=True`
+## 🧪 Test Configuration
+- `test_size = 0.3`
+- `random_state = 66`
+- `scaler = MinMaxScaler`
+- `apply_lda = True`
 
-### Logistic Regression (logreg)
-| Method                 | Accuracy | Precision | Recall | F1-score | ROC-AUC |
-|------------------------|----------|-----------|--------|----------|---------|
-| Baseline               | 0.8543   | 0.7418    | 0.6059 | 0.6670   | 0.9055  |
-| Random Oversampling    | 0.8071   | 0.5661    | 0.8525 | 0.6804   | 0.9058  |
-| SMOTE                  | 0.8108   | 0.5748    | 0.8236 | 0.6770   | 0.9009  |
-| Random Undersampling   | 0.8021   | 0.5582    | 0.8537 | 0.6751   | 0.9044  |
-| Tomek Links            | 0.8503   | 0.6983    | 0.6662 | 0.6819   | 0.9046  |
-| LDA                    | 0.8405   | 0.7153    | 0.5608 | 0.6287   | 0.8925  |
+---
+
+## 📊 Performance Summary
+
+### Logistic Regression
+| Method               | Acc    | Prec   | Recall | F1     | ROC-AUC |
+|----------------------|--------|--------|--------|--------|---------|
+| Baseline             | 0.8543 | 0.7418 | 0.6059 | 0.6670 | 0.9055  |
+| Random Oversampling  | 0.8071 | 0.5661 | 0.8525 | 0.6804 | 0.9058  |
+| SMOTE                | 0.8108 | 0.5748 | 0.8236 | 0.6770 | 0.9009  |
+| Random Undersampling | 0.8021 | 0.5582 | 0.8537 | 0.6751 | 0.9044  |
+| Tomek Links          | 0.8503 | 0.6983 | 0.6662 | 0.6819 | 0.9046  |
+| LDA                  | 0.8405 | 0.7153 | 0.5608 | 0.6287 | 0.8925  |
 
 ### Random Forest
-| Method                 | Accuracy | Precision | Recall | F1-score | ROC-AUC |
-|------------------------|----------|-----------|--------|----------|---------|
-| Baseline               | 0.8547   | 0.7341    | 0.6220 | 0.6734   | 0.9037  |
-| Random Oversampling    | 0.8446   | 0.6758    | 0.6815 | 0.6787   | 0.8999  |
-| SMOTE                  | 0.8357   | 0.6439    | 0.7105 | 0.6756   | 0.8947  |
-| Random Undersampling   | 0.8079   | 0.5688    | 0.8350 | 0.6767   | 0.9027  |
-| Tomek Links            | 0.8522   | 0.6949    | 0.6884 | 0.6916   | 0.9032  |
-| LDA                    | 0.7762   | 0.5346    | 0.5455 | 0.5400   | 0.8163  |
+| Method               | Acc    | Prec   | Recall | F1     | ROC-AUC |
+|----------------------|--------|--------|--------|--------|---------|
+| Baseline             | 0.8547 | 0.7341 | 0.6220 | 0.6734 | 0.9037  |
+| Random Oversampling  | 0.8446 | 0.6758 | 0.6815 | 0.6787 | 0.8999  |
+| SMOTE                | 0.8357 | 0.6439 | 0.7105 | 0.6756 | 0.8947  |
+| Random Undersampling | 0.8079 | 0.5688 | 0.8350 | 0.6767 | 0.9027  |
+| Tomek Links          | 0.8522 | 0.6949 | 0.6884 | 0.6916 | 0.9032  |
+| LDA                  | 0.7762 | 0.5346 | 0.5455 | 0.5400 | 0.8163  |
 
-### KNN
-| Method                 | Accuracy | Precision | Recall | F1-score | ROC-AUC |
-|------------------------|----------|-----------|--------|----------|---------|
-| Baseline               | 0.8246   | 0.6524    | 0.5816 | 0.6150   | 0.8434  |
-| Random Oversampling    | 0.7700   | 0.5148    | 0.7751 | 0.6187   | 0.8316  |
-| SMOTE                  | 0.7892   | 0.5456    | 0.7457 | 0.6301   | 0.8377  |
-| Random Undersampling   | 0.7679   | 0.5114    | 0.8121 | 0.6276   | 0.8528  |
-| Tomek Links            | 0.8201   | 0.6192    | 0.6569 | 0.6375   | 0.8453  |
-| LDA                    | 0.8171   | 0.6373    | 0.5574 | 0.5947   | 0.8333  |
+### K-Nearest Neighbors (KNN)
+| Method               | Acc    | Prec   | Recall | F1     | ROC-AUC |
+|----------------------|--------|--------|--------|--------|---------|
+| Baseline             | 0.8246 | 0.6524 | 0.5816 | 0.6150 | 0.8434  |
+| Random Oversampling  | 0.7700 | 0.5148 | 0.7751 | 0.6187 | 0.8316  |
+| SMOTE                | 0.7892 | 0.5456 | 0.7457 | 0.6301 | 0.8377  |
+| Random Undersampling | 0.7679 | 0.5114 | 0.8121 | 0.6276 | 0.8528  |
+| Tomek Links          | 0.8201 | 0.6192 | 0.6569 | 0.6375 | 0.8453  |
+| LDA                  | 0.8171 | 0.6373 | 0.5574 | 0.5947 | 0.8333  |
 
-### Gradient Boost
-| Method                 | Accuracy | Precision | Recall | F1-score | ROC-AUC |
-|------------------------|----------|-----------|--------|----------|---------|
-| Baseline               | 0.8683   | 0.7934    | 0.6122 | 0.6911   | 0.9208  |
-| Random Oversampling    | 0.8221   | 0.5893    | 0.8614 | 0.6998   | 0.9209  |
-| SMOTE                  | 0.8243   | 0.5986    | 0.8206 | 0.6923   | 0.9132  |
-| Random Undersampling   | 0.8179   | 0.5824    | 0.8614 | 0.6949   | 0.9203  |
-| Tomek Links            | 0.8678   | 0.7520    | 0.6730 | 0.7103   | 0.9204  |
-| LDA                    | 0.8384   | 0.7160    | 0.5446 | 0.6187   | 0.8890  |
-
----
-
-## 🖼️ Confusion Matrices and Visuals
-> All confusion matrices and plots are available in the `results/` folder.
-
-### 🔢 Distribution
-![Distribution of Numerical Features](results/Distribution_of_Numerical_Features.png)
-![Income Class Distribution](results/Income_Class_Distribution.png)
-
-### 📌 Baseline Confusion Matrices
-![Logreg](results/Confusion_Matrix_-_logreg.png)
-![Random Forest](results/Confusion_Matrix_-_random_forest.png)
-![KNN](results/Confusion_Matrix_-_knn.png)
-![Gradient Boost](results/Confusion_Matrix_-_gradient_boost.png)
-
-### 🔁 Sampling Results (Examples)
-- **Logreg**:
-  ![RO](results/Confusion_Matrix_-_Random_Oversampling_logreg.png)
-  ![SMOTE](results/Confusion_Matrix_-_SMOTE_logreg.png)
-  ![RU](results/Confusion_Matrix_-_Random_Undersampling_logreg.png)
-  ![Tomek](results/Confusion_Matrix_-_Tomek_Links_logreg.png)
-
-- **Random Forest**:
-  ![RO](results/Confusion_Matrix_-_Random_Oversampling_random_forest.png)
-  ![SMOTE](results/Confusion_Matrix_-_SMOTE_random_forest.png)
-  ![RU](results/Confusion_Matrix_-_Random_Undersampling_random_forest.png)
-  ![Tomek](results/Confusion_Matrix_-_Tomek_Links_random_forest.png)
-
-- **KNN**:
-  ![RO](results/Confusion_Matrix_-_Random_Oversampling_knn.png)
-  ![SMOTE](results/Confusion_Matrix_-_SMOTE_knn.png)
-  ![RU](results/Confusion_Matrix_-_Random_Undersampling_knn.png)
-  ![Tomek](results/Confusion_Matrix_-_Tomek_Links_knn.png)
-
-- **Gradient Boost**:
-  ![RO](results/Confusion_Matrix_-_Random_Oversampling_gradient_boost.png)
-  ![SMOTE](results/Confusion_Matrix_-_SMOTE_gradient_boost.png)
-  ![RU](results/Confusion_Matrix_-_Random_Undersampling_gradient_boost.png)
-  ![Tomek](results/Confusion_Matrix_-_Tomek_Links_gradient_boost.png)
-
-### 📉 LDA-Based Models
-![LDA - logreg](results/Confusion_Matrix_-_LDA_logreg.png)
-![LDA - random forest](results/Confusion_Matrix_-_LDA_random_forest.png)
-![LDA - knn](results/Confusion_Matrix_-_LDA_knn.png)
-![LDA - gradient boost](results/Confusion_Matrix_-_LDA_gradient_boost.png)
+### Gradient Boosting
+| Method               | Acc    | Prec   | Recall | F1     | ROC-AUC |
+|----------------------|--------|--------|--------|--------|---------|
+| Baseline             | 0.8683 | 0.7934 | 0.6122 | 0.6911 | 0.9208  |
+| Random Oversampling  | 0.8221 | 0.5893 | 0.8614 | 0.6998 | 0.9209  |
+| SMOTE                | 0.8243 | 0.5986 | 0.8206 | 0.6923 | 0.9132  |
+| Random Undersampling | 0.8179 | 0.5824 | 0.8614 | 0.6949 | 0.9203  |
+| Tomek Links          | 0.8678 | 0.7520 | 0.6730 | 0.7103 | 0.9204  |
+| LDA                  | 0.8384 | 0.7160 | 0.5446 | 0.6187 | 0.8890  |
 
 ---
 
-## ⏱️ Time Efficiency Summary
-- Logistic Regression (sampling): **~12.04s**
-- Gradient Boost (sampling): **~31.95s**
-- Random Forest (LDA): **~5.72s**
-- KNN (LDA): **~2.39s**
+## 🖼️ Visual Results (Confusion Matrices)
+Visual results are stored in the `results/` folder and include all 26 image outputs:
+- Distribution plots
+- Confusion matrices per model and method
+- LDA-reduced model comparisons
 
-Each model tracks its own duration for performance comparison.
+### Distribution:
+- ![Distribution](results/Distribution_of_Numerical_Features.png)
+- ![Income Class](results/Income_Class_Distribution.png)
+
+### Baseline Confusion Matrices:
+- ![Logreg](results/Confusion_Matrix_-_logreg.png)
+- ![Random Forest](results/Confusion_Matrix_-_random_forest.png)
+- ![KNN](results/Confusion_Matrix_-_knn.png)
+- ![Gradient Boost](results/Confusion_Matrix_-_gradient_boost.png)
+
+### Sampling + Model Confusion Matrices:
+
+#### Logistic Regression
+- ![RO logreg](results/Confusion_Matrix_-_Random_Oversampling_logreg.png)
+- ![SMOTE logreg](results/Confusion_Matrix_-_SMOTE_logreg.png)
+- ![RU logreg](results/Confusion_Matrix_-_Random_Undersampling_logreg.png)
+- ![Tomek logreg](results/Confusion_Matrix_-_Tomek_Links_logreg.png)
+
+#### Random Forest
+- ![RO RF](results/Confusion_Matrix_-_Random_Oversampling_random_forest.png)
+- ![SMOTE RF](results/Confusion_Matrix_-_SMOTE_random_forest.png)
+- ![RU RF](results/Confusion_Matrix_-_Random_Undersampling_random_forest.png)
+- ![Tomek RF](results/Confusion_Matrix_-_Tomek_Links_random_forest.png)
+
+#### KNN
+- ![RO KNN](results/Confusion_Matrix_-_Random_Oversampling_knn.png)
+- ![SMOTE KNN](results/Confusion_Matrix_-_SMOTE_knn.png)
+- ![RU KNN](results/Confusion_Matrix_-_Random_Undersampling_knn.png)
+- ![Tomek KNN](results/Confusion_Matrix_-_Tomek_Links_knn.png)
+
+#### Gradient Boost
+- ![RO GB](results/Confusion_Matrix_-_Random_Oversampling_gradient_boost.png)
+- ![SMOTE GB](results/Confusion_Matrix_-_SMOTE_gradient_boost.png)
+- ![RU GB](results/Confusion_Matrix_-_Random_Undersampling_gradient_boost.png)
+- ![Tomek GB](results/Confusion_Matrix_-_Tomek_Links_gradient_boost.png)
+
+### LDA Confusion Matrices:
+- ![LDA logreg](results/Confusion_Matrix_-_LDA_logreg.png)
+- ![LDA RF](results/Confusion_Matrix_-_LDA_random_forest.png)
+- ![LDA KNN](results/Confusion_Matrix_-_LDA_knn.png)
+- ![LDA GB](results/Confusion_Matrix_-_LDA_gradient_boost.png)
 
 ---
 
 ## 🚀 How to Run
-Just execute the script:
 ```bash
 python Main.py
 ```
 You'll be prompted for:
-- Test size (e.g. 0.3)
-- Random seed
-- Model type (or `all`)
-- Sampling method (or `all`)
-- LDA option (True/False)
+- Test size (e.g., `0.3`)
+- Random state (e.g., `66`)
+- Model (`logreg`, `knn`, `random_forest`, `gradient_boost`, or `all`)
+- Sampling (`smote`, `undersample`, `tomek`, `random`, or `all`)
+- Whether to apply LDA (`True` or `False`)
 
-Outputs include printed metrics and confusion matrix images saved to `results/`.
+All outputs will be saved to the `results/` folder.
 
 ---
-
-## 📂 Outputs Generated
-- 26 Confusion Matrix PNG files
-- `Distribution_of_Numerical_Features.png`
-- `Income_Class_Distribution.png`
-
 
 Created by: **Mesut Erkin Özokutgen**
